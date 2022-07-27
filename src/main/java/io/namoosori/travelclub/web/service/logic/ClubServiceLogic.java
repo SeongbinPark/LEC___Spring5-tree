@@ -25,8 +25,7 @@ public class ClubServiceLogic implements ClubService {
 		//
 		TravelClub club = new TravelClub(clubCdo.getName(), clubCdo.getIntro());
 		club.checkValidation();
-		String clubId = clubStore.create(club);
-		return clubId;
+		return clubStore.create(club);
 	}
 
 	@Override
@@ -43,6 +42,7 @@ public class ClubServiceLogic implements ClubService {
 	public List<TravelClub> findAll(){
 		return clubStore.retrieveAll();
 	}
+
 	@Override
 	public void modify(String clubId, NameValueList nameValueList) {
 		TravelClub travelClub = clubStore.retrieve(clubId);
