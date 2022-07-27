@@ -25,11 +25,13 @@ public class ClubMapStore implements ClubStore {
 		clubMap.put(club.getId(),  club);
 		return club.getId();
 	}
+
 	@Override
 	public TravelClub retrieve(String clubId) {
 		//
 		return clubMap.get(clubId);
 	}
+
 	@Override
 	public List<TravelClub> retrieveByName(String name) {
 		//
