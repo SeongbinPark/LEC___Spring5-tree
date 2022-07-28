@@ -38,7 +38,9 @@ public class ClubJpaStore implements ClubStore {
 
     @Override
     public List<TravelClub> retrieveByName(String name) {
-        return null;
+        List<TravelClubJpo> clubJpos = clubRepository.findAllByName(name);
+        return clubJpos.stream().map(TravelClubJpo::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -48,18 +50,18 @@ public class ClubJpaStore implements ClubStore {
                 .collect(Collectors.toList());
     }
 
-    @Override
+    @Override//기존에 있는 데이터면 update(PK로 판단)
     public void update(TravelClub club) {
-
+        clubRepository.save(new TravelClubJpo(club));
     }
 
     @Override
     public void delete(String clubId) {
-
+        clubRepository.deleteById(clubId);
     }
 
     @Override
     public boolean exists(String clubId) {
-        return false;
+        return clubRepository.existsById(clubId);
     }
 }
